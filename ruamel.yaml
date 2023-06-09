@@ -1,0 +1,10 @@
+from ruamel.yaml import YAML
+from jinja2 import Environment, FileSystemLoader
+
+jinja = Environment(loader = FileSystemLoader('.'), trim_blocks=True, lstrip_blocks=True)
+template = jinja.get_template('sample.yml')
+yaml=YAML()
+yaml.allow_duplicate_keys = True
+yaml.explicit_start = True
+yaml_content = yaml.load(template.render())
+print (yaml_content['package'])
